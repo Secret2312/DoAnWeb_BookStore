@@ -1,0 +1,105 @@
+﻿@model BookStore.Models.SACH
+
+@{
+    ViewBag.Title = "themmoisach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Themmoisach", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal row">
+        <h3>THÊM MỚI SÁCH</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="form-group col-md-8 col-lg-8">
+            @Html.LabelFor(model => model.Tensach, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tensach, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tensach, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="form-group col-md-8 col-lg-8">
+            @Html.LabelFor(model => model.Giaban, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Giaban, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Giaban, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="form-group col-md-8 col-lg-8">
+            @Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="form-group col-md-8 col-lg-8">
+            @Html.LabelFor(model => model.Anhbia, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
+            <div class="col-md-10">
+                <input type="file" value="" name="fileupload" />
+                @ViewBag.Thongbao
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="form-group col-md-8 col-lg-8">
+            @Html.LabelFor(model => model.Ngaycapnhat, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
+            <div class="col-md-10">
+                <input type="date" value="Ngaycapnhat" />
+                @Html.ValidationMessageFor(model => model.Ngaycapnhat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="form-group col-md-8 col-lg-8">
+            @Html.LabelFor(model => model.Soluongton, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Soluongton, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Soluongton, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="form-group col-md-8 col-lg-8">
+            @Html.LabelFor(model => model.MaCD, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaCD")
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="form-group col-md-8 col-lg-8">
+            @Html.LabelFor(model => model.MaNXB, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaNXB")
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="form-group col-md-8 col-lg-8">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về danh sách", "Index")
+</div>

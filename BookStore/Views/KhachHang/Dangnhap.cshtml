@@ -1,0 +1,39 @@
+﻿@using BookStore.Models
+@model KHACHHANG
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h4 style="color: orangered; text-align: center">@ViewBag.Thongbao</h4>
+<h3 style="text-align: center">ĐĂNG NHẬP</h3>
+
+<table style="margin: auto">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <tr style="height: 40px">
+            <td style="text-align: right">Tên đăng nhập: </td>
+            <td>
+                @Html.TextBoxFor(m => m.Taikhoan)
+                @Html.ValidationMessageFor(m => m.Taikhoan, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr style="height: 40px">
+            <td style="text-align: right">Mật khẩu: </td>
+            <td>
+                @Html.Password("Matkhau")
+                @Html.ValidationMessageFor(m => m.Matkhau, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr style="height: 40px">
+            <td></td>
+            <td>
+                <button class="btn btn-info btn-sm" type="submit">Đăng nhập</button>
+                <a href="@Url.Action("DangKy","KhachHang")" class="btn btn-info btn-sm">Đăng ký</a>
+            </td>
+        </tr>
+    }
+</table>

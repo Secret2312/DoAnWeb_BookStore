@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align: center; color: orangered">CHI TIẾT SÁCH</h2>
+<h3>Tên sách: @Model.Tensach</h3>
+
+<div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <img src="~/Images/@Model.Anhbia" alt="@Model.Tensach" style="width:100%;" />
+    </div>
+    <div class="col-sm-8 col-md-8 col-lg-8">
+        <h3 style="color: orangered">Tên sách: @Model.Tensach</h3>
+        <p><span style="font-weight: bold">Mô tả: </span>@Model.Mota</p>
+        <p style="font-weight: bold">Giá bán: <span style="color: orangered; font-weight: bold; font-size: 16px">@Model.Giaban VNĐ</span></p>
+        <p></p>
+        <a href="@Url.Action("ThemGiohang", "Giohang", new {id = @Model.Masach})" class="btn btn-danger btn-lg">
+            ĐẶT MUA
+        </a>
+    </div>
+</div>

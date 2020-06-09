@@ -1,0 +1,37 @@
+﻿@model IEnumerable<BookStore.Models.CHUDE>
+
+@{
+    ViewBag.Title = "Danh Sách Chủ Đề";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>DANH SÁCH CHỦ ĐỀ</h2>
+
+<p>
+    @Html.ActionLink("Thêm Chủ Đề", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            Tên Chủ Đề 
+        </th>
+        <th></th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.TenChuDe)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MaCD }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MaCD }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MaCD })
+        </td>
+    </tr>
+}
+
+</table>

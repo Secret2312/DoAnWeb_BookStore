@@ -1,0 +1,99 @@
+﻿@using BookStore.Models
+@model List<Giohang>
+
+@{
+    ViewBag.Title = "Giohang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/GioHang.css" rel="stylesheet" />
+
+
+<h2 class="text-center">THÔNG TIN GIỎ HÀNG</h2>
+<div class="container" style="width: 100%;">
+    <table id="cart" class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th style="width:50%">Tên Sách</th>
+                <th style="width:10%">Giá</th>
+                <th style="width:10%">Số lượng</th>
+                <th style="width:15%" class="text-center">Thành tiền</th>
+                <th style="width:10%"> </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td data-th="Product">
+                    <div class="row">
+                        <div class="col-sm-4 hidden-xs">
+                            <img src="~/Images/@item.sAnhbia" alt="@item.sTensach" class="img-responsive" width="100">
+                        </div>
+                        <div class="col-sm-8">
+                            <h4 class="nomargin">@item.sTensach</h4>
+                        </div>
+                    </div>
+                </td>
+                @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @iMaSp = item.iMasach }))
+                {
+                    <td data-th="Price">@String.Format("{0:0,0}", item.dDongia) đ</td>
+                    <td data-th="Quantity">
+                        <input min="1" class="form-control text-center" value="@item.iSoluong" type="number" name="txtSoluong">
+                    </td>
+                    <td id="thanhtien" data-th="Subtotal" class="text-center">@String.Format("{0:0,0}", item.dThanhtien) đ</td>
+
+                    <td class="actions" data-th="" style="display:flex;">
+                        <a href="@Url.Action("Details", "Bookstore", new { @id = item.iMasach })" class="btn btn-info btn-sm" style="margin: 3px;"><i class="fa fa-edit"></i></a>
+
+                        <a href="@Url.Action("Xoagiohang","GioHang",new {@iMaSP = item.iMasach })" class="btn btn-danger btn-sm" style="margin: 3px;" onclick="return confirm('Bạn có muốn xoá sách này khỏi giỏ hàng?')"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                    <td><input type="submit" value="Cập nhật" /></td>
+                }
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td >
+                    <a href="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
+                </td>
+                <td colspan="2" class="hidden-xs">@Html.ActionLink("Xóa giỏ hàng", "XoaTatcaGiohang", "GioHang", new { onclick = "return confirm('Bạn có muốn xoá giỏ hàng?')" })</td>
+                <td class="hidden-xs text-center" colspan="2">
+                    <strong>Tổng tiền @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</strong>
+                </td>
+                <td colspan="2">
+                    <a href="@Url.Action("DatHang","GioHang")" onclick="return confirm ('Tiến hành thanh toán');" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>
+                    <button onclick="hello()">Click me</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function () {
+        function capnhatgia() {
+            $.ajax({
+                type: "POST",
+                url: '/GioHang/CapnhatGiohang',
+                data: { iMaSp = item.iMasach, txtSoluong = $('#txtSoluong').val() },
+                success: function (data) {
+                    alert("Success");
+                },
+                error: function () {
+                    alert("Fail");
+                }
+            });
+
+        }
+
+        function hello() {
+            alert("Hello");
+        }
+        $('#click').click(function () {
+            hello();
+        });
+    });
+
+</script>
+
